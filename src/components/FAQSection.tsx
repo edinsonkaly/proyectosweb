@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import faqImage from "@/assets/faq-person.jpg";
+import faqImage from "@/assets/faq-professional.jpg";
 
 const faqs = [
   {
@@ -37,12 +37,18 @@ const FAQSection = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Left Column - Image */}
-          <div className="order-2 lg:order-1">
-            <img 
-              src={faqImage} 
-              alt="Persona pensativa consultando dudas" 
-              className="w-full h-auto rounded-lg shadow-lg"
-            />
+          <div className="order-2 lg:order-1 relative">
+            <div className="relative overflow-hidden rounded-xl shadow-2xl">
+              <img 
+                src={faqImage} 
+                alt="Profesional considerando estrategias de IA" 
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
+            </div>
+            {/* Decorative elements */}
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-orange-400 rounded-full opacity-20 blur-xl"></div>
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-500 rounded-full opacity-15 blur-2xl"></div>
           </div>
           
           {/* Right Column - FAQ */}
