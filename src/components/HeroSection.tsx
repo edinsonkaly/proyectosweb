@@ -3,7 +3,7 @@ import heroBackground from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center" style={{
+    <section id="hero" className="relative min-h-screen flex items-center justify-center pt-24" style={{
       background: 'linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #1e40af 100%)'
     }}>
       {/* Background Image */}

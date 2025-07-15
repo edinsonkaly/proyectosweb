@@ -5,7 +5,7 @@ import { Calendar, Clock, Phone } from "lucide-react";
 
 const ContactSection = () => {
   return (
-    <section className="py-20">
+    <section id="contact" className="py-20">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
           {/* Left Column - Orange Background */}
