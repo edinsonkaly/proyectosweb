@@ -2,46 +2,46 @@ import professionalImage from "@/assets/professional.jpg";
 
 const VisionSection = () => {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
-          {/* Left Column - 60% */}
-          <div className="lg:col-span-3">
-            <p className="text-accent text-lg font-semibold mb-4 uppercase tracking-wide">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left Column */}
+          <div>
+            <p className="text-orange-500 text-sm font-semibold mb-2 uppercase tracking-wide">
               Una Agencia con Visión de Futuro
             </p>
             
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
               Convertimos Datos en
-              <span className="block text-accent">Decisiones Rentables</span>
+              <span className="block text-orange-500">Decisiones Rentables</span>
             </h2>
             
-            <p className="text-muted-foreground text-lg leading-relaxed">
+            <p className="text-gray-600 text-lg leading-relaxed mb-8">
               Ayudamos a directores y empresarios visionarios a implementar soluciones de 
               inteligencia artificial que generan ventajas competitivas reales. Nuestro enfoque 
               estratégico convierte información compleja en oportunidades de crecimiento medibles 
               y sostenibles.
             </p>
+
+            <div className="grid grid-cols-2 gap-6">
+              <div className="bg-orange-50 p-6 rounded-lg">
+                <div className="text-3xl font-bold text-orange-500 mb-2">80%</div>
+                <div className="text-gray-700 text-sm">más eficiencia</div>
+              </div>
+              <div className="bg-green-50 p-6 rounded-lg">
+                <div className="text-3xl font-bold text-green-600 mb-2">70%</div>
+                <div className="text-gray-700 text-sm">mejor ROI</div>
+              </div>
+            </div>
           </div>
           
-          {/* Right Column - 40% */}
-          <div className="lg:col-span-2 relative">
+          {/* Right Column */}
+          <div className="relative">
             <img 
               src={professionalImage} 
               alt="Profesional trabajando con IA" 
               className="rounded-lg shadow-xl w-full h-auto"
             />
-            
-            {/* Floating Stats */}
-            <div className="absolute -top-4 -right-4 bg-accent text-accent-foreground p-4 rounded-lg shadow-lg">
-              <div className="text-2xl font-bold">80%</div>
-              <div className="text-sm">más eficiencia</div>
-            </div>
-            
-            <div className="absolute -bottom-4 -left-4 bg-success text-success-foreground p-4 rounded-lg shadow-lg">
-              <div className="text-2xl font-bold">70%</div>
-              <div className="text-sm">mejor ROI</div>
-            </div>
           </div>
         </div>
       </div>
