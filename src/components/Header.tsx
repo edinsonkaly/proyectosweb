@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Linkedin, Instagram, Facebook } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/impulso-logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,40 +24,43 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-slate-800 ${
-      isScrolled ? 'bg-slate-900/80 backdrop-blur-md' : 'bg-slate-900/95 backdrop-blur-sm'
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-border/20 ${
+      isScrolled ? 'bg-background/80 backdrop-blur-md' : 'bg-background/95 backdrop-blur-sm'
     }`}>
       <div className="container mx-auto px-4">
         {/* Main Navigation */}
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <img src={logo} alt="EON SAM Logo" className="h-10 w-10" />
-            <span className="text-xl font-bold text-white">EON SAM</span>
+            <img src={logo} alt="Impulso E-Marcketing'ia Logo" className="h-10 w-10" />
+            <span className="text-xl font-bold text-foreground">Impulso E-Marcketing'ia</span>
           </div>
 
           {/* Desktop Main Menu */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#" className="text-gray-300 hover:text-white transition-colors">
+            <a href="#" className="text-foreground hover:text-accent transition-colors">
               Quienes Somos
             </a>
-            <a href="#" className="text-gray-300 hover:text-white transition-colors">
+            <a href="#" className="text-foreground hover:text-accent transition-colors">
               Blog
             </a>
-            <a href="#" className="text-gray-300 hover:text-white transition-colors">
+            <a href="#" className="text-foreground hover:text-accent transition-colors">
               Acerca De
             </a>
+            <button className="bg-gradient-to-r from-success via-accent to-purple text-white px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition-all">
+              Consulta Gratis
+            </button>
           </nav>
 
           {/* Social Media Icons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <a href="#" className="text-gray-400 hover:text-orange-400 transition-colors">
+          <div className="hidden lg:flex items-center space-x-4">
+            <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
               <Linkedin className="h-5 w-5" />
             </a>
-            <a href="#" className="text-gray-400 hover:text-orange-400 transition-colors">
+            <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
               <Instagram className="h-5 w-5" />
             </a>
-            <a href="#" className="text-gray-400 hover:text-orange-400 transition-colors">
+            <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
               <Facebook className="h-5 w-5" />
             </a>
           </div>
@@ -65,56 +68,56 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-white p-2"
+            className="md:hidden text-foreground p-2"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
 
         {/* Secondary Navigation - Page Sections */}
-        <div className="hidden md:block border-t border-slate-800">
+        <div className="hidden md:block border-t border-border/20">
           <nav className="flex items-center justify-center space-x-8 py-3">
             <button
               onClick={() => scrollToSection('hero')}
-              className="text-sm text-gray-400 hover:text-orange-400 transition-colors"
+              className="text-sm text-muted-foreground hover:text-accent transition-colors"
             >
               Inicio
             </button>
             <button
-              onClick={() => scrollToSection('vision')}
-              className="text-sm text-gray-400 hover:text-orange-400 transition-colors"
+              onClick={() => scrollToSection('ideal-client')}
+              className="text-sm text-muted-foreground hover:text-accent transition-colors"
             >
-              Visión
+              ¿Es para ti?
             </button>
             <button
               onClick={() => scrollToSection('benefits')}
-              className="text-sm text-gray-400 hover:text-orange-400 transition-colors"
+              className="text-sm text-muted-foreground hover:text-accent transition-colors"
             >
               Beneficios
             </button>
             <button
               onClick={() => scrollToSection('methodology')}
-              className="text-sm text-gray-400 hover:text-orange-400 transition-colors"
+              className="text-sm text-muted-foreground hover:text-accent transition-colors"
             >
-              Metodología
+              Proceso
             </button>
             <button
-              onClick={() => scrollToSection('stats')}
-              className="text-sm text-gray-400 hover:text-orange-400 transition-colors"
+              onClick={() => scrollToSection('urgency')}
+              className="text-sm text-muted-foreground hover:text-accent transition-colors"
             >
-              Resultados
+              ¿Por qué ahora?
+            </button>
+            <button
+              onClick={() => scrollToSection('technologies')}
+              className="text-sm text-muted-foreground hover:text-accent transition-colors"
+            >
+              Tecnologías
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="text-sm text-gray-400 hover:text-orange-400 transition-colors"
+              className="text-sm text-muted-foreground hover:text-accent transition-colors"
             >
               Contacto
-            </button>
-            <button
-              onClick={() => scrollToSection('faq')}
-              className="text-sm text-gray-400 hover:text-orange-400 transition-colors"
-            >
-              FAQ
             </button>
           </nav>
         </div>

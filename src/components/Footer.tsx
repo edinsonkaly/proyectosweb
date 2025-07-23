@@ -1,130 +1,75 @@
-import { Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Instagram, Facebook } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-white py-16">
+    <footer className="bg-secondary text-foreground py-16 border-t-4 border-gradient-to-r from-accent via-success to-purple">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Column 1 - Logo and Social */}
+        <div className="grid md:grid-cols-4 gap-8">
+          {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold text-accent mb-6">EON SAM</h3>
-            <p className="text-white/80 mb-6 leading-relaxed">
-              Agencia de Marketing Digital especializada en soluciones de Inteligencia Artificial 
-              para el crecimiento exponencial de tu negocio.
+            <h3 className="text-xl font-bold mb-4 text-accent">Impulso E-Marcketing'ia</h3>
+            <p className="text-muted-foreground mb-4">
+              Soluciones que venden por ti mientras tú vives. Tu negocio en automático y tus ventas en piloto automático.
             </p>
             <div className="flex space-x-4">
-              <a 
-                href="#" 
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors duration-200"
-              >
-                <Linkedin className="w-5 h-5" />
+              <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
+                <Linkedin className="h-5 w-5" />
               </a>
-              <a 
-                href="#" 
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors duration-200"
-              >
-                <Instagram className="w-5 h-5" />
+              <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
+                <Facebook className="h-5 w-5" />
               </a>
             </div>
           </div>
-          
-          {/* Column 2 - Services */}
+
+          {/* Services */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Nuestros Servicios</h4>
-            <ul className="space-y-3">
-              <li>
-                <a href="#" className="text-white/80 hover:text-accent transition-colors duration-200">
-                  Implementación de IA
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white/80 hover:text-accent transition-colors duration-200">
-                  Marketing Automatizado
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white/80 hover:text-accent transition-colors duration-200">
-                  Análisis Predictivo
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white/80 hover:text-accent transition-colors duration-200">
-                  Optimización de Procesos
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white/80 hover:text-accent transition-colors duration-200">
-                  Consultoría Estratégica
-                </a>
-              </li>
+            <h4 className="text-lg font-semibold mb-4 text-success">Servicios</h4>
+            <ul className="space-y-2 text-muted-foreground">
+              <li><a href="#" className="hover:text-accent transition-colors">Automatización con IA</a></li>
+              <li><a href="#" className="hover:text-accent transition-colors">WhatsApp Business API</a></li>
+              <li><a href="#" className="hover:text-accent transition-colors">Marketing Automatizado</a></li>
+              <li><a href="#" className="hover:text-accent transition-colors">CRM Inteligente</a></li>
             </ul>
           </div>
-          
-          {/* Column 3 - Links */}
+
+          {/* Company */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Links de Interés</h4>
-            <ul className="space-y-3">
-              <li>
-                <a href="#" className="text-white/80 hover:text-accent transition-colors duration-200">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white/80 hover:text-accent transition-colors duration-200">
-                  Nosotros
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white/80 hover:text-accent transition-colors duration-200">
-                  FAQ
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white/80 hover:text-accent transition-colors duration-200">
-                  Casos de Éxito
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-white/80 hover:text-accent transition-colors duration-200">
-                  Recursos
-                </a>
-              </li>
+            <h4 className="text-lg font-semibold mb-4 text-purple">Empresa</h4>
+            <ul className="space-y-2 text-muted-foreground">
+              <li><a href="#" className="hover:text-accent transition-colors">Quienes Somos</a></li>
+              <li><a href="#" className="hover:text-accent transition-colors">Casos de Éxito</a></li>
+              <li><a href="#" className="hover:text-accent transition-colors">Blog</a></li>
+              <li><a href="#" className="hover:text-accent transition-colors">Acerca De</a></li>
             </ul>
           </div>
-          
-          {/* Column 4 - Contact */}
+
+          {/* Contact */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Contáctanos</h4>
-            <div className="space-y-4">
-              <div className="flex items-center">
-                <Mail className="w-5 h-5 text-accent mr-3 flex-shrink-0" />
-                <span className="text-white/80">
-                  hola@eonsam.com
-                </span>
+            <h4 className="text-lg font-semibold mb-4 text-accent">Contacto</h4>
+            <div className="space-y-3 text-muted-foreground">
+              <div className="flex items-center space-x-2">
+                <Mail className="h-4 w-4" />
+                <span>hola@impulsoemarketingia.com</span>
               </div>
-              <div className="flex items-center">
-                <Phone className="w-5 h-5 text-accent mr-3 flex-shrink-0" />
-                <span className="text-white/80">
-                  +1 (555) 123-4567
-                </span>
+              <div className="flex items-center space-x-2">
+                <Phone className="h-4 w-4" />
+                <span>+57 (300) 123-4567</span>
               </div>
-              <div className="flex items-start">
-                <MapPin className="w-5 h-5 text-accent mr-3 flex-shrink-0 mt-0.5" />
-                <span className="text-white/80">
-                  123 Business Center<br />
-                  Miami, FL 33101<br />
-                  Estados Unidos
-                </span>
+              <div className="flex items-center space-x-2">
+                <MapPin className="h-4 w-4" />
+                <span>Colombia, LATAM</span>
               </div>
             </div>
           </div>
         </div>
-        
-        {/* Bottom Section */}
-        <div className="border-t border-white/20 mt-12 pt-8">
-          <div className="text-center text-white/60">
-            <p>&copy; 2024 EON SAM. Todos los derechos reservados. | Política de Privacidad | Términos de Servicio</p>
-          </div>
+
+        <div className="border-t border-border mt-12 pt-8 text-center">
+          <p className="text-muted-foreground">
+            © 2024 Impulso E-Marcketing'ia. Automatizando el futuro de tu negocio.
+          </p>
         </div>
       </div>
     </footer>

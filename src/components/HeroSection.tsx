@@ -96,23 +96,44 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center justify-between">
           {/* Left Column - Text */}
           <div className="space-y-8">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-slate-900 leading-tight">
-              Agencia de
-              <span className="block text-orange-400">Inteligencia Artificial</span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight">
+              Soluciones que venden por ti
+              <span className="block text-accent">mientras tú vives</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-slate-700 leading-relaxed max-w-2xl">
-              Transformamos tu estrategia de marketing con soluciones de inteligencia artificial a medida, 
-              automatizando procesos para un crecimiento exponencial
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
+              Tu negocio en automático y tus ventas en piloto automatico. Automatizamos tu comunicación, 
+              atención y captación de clientes con IA.
             </p>
+
+            {/* Stats Highlight */}
+            <div className="inline-flex items-center bg-stats text-stats-foreground px-6 py-3 rounded-lg font-bold text-xl shadow-lg">
+              <span className="text-2xl mr-2">💰</span>
+              $134B en ventas automatizadas
+            </div>
+
+            {/* Contrast Phrases */}
+            <div className="space-y-3 text-sm md:text-base">
+              <div className="flex items-center space-x-4">
+                <span className="text-red-500 line-through">Antes: 8 horas al día en redes</span>
+                <span className="text-success font-semibold">→ Ahora: 100% automático</span>
+              </div>
+              <div className="flex items-center space-x-4">
+                <span className="text-red-500 line-through">Antes: Perder clientes por no responder</span>
+                <span className="text-success font-semibold">→ Ahora: Respuesta instantánea 24/7</span>
+              </div>
+            </div>
           </div>
 
           {/* Right Column - Form */}
           <div className="flex justify-end">
-            <div className="bg-white p-8 rounded-2xl shadow-2xl border-2 border-orange-400 w-full max-w-md">
-              <h3 className="text-2xl font-bold text-slate-900 mb-6 text-center">
-                Solicita tu Asesoría Gratuita
+            <div className="bg-card p-8 rounded-2xl shadow-2xl border-2 border-accent w-full max-w-md">
+              <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
+                🚀 Consulta Gratuita
               </h3>
+              <p className="text-muted-foreground text-center mb-6">
+                Descubre cómo automatizar tu negocio en 30 minutos
+              </p>
               
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
@@ -153,12 +174,10 @@ const HeroSection = () => {
                 
                 <Button 
                   type="submit" 
-                  variant="cta" 
-                  size="lg" 
-                  className="w-full text-lg py-6"
+                  className="w-full text-lg py-6 bg-gradient-to-r from-success via-accent to-purple text-white font-semibold hover:opacity-90 transition-all"
                   disabled={isLoading}
                 >
-                  {isLoading ? "Enviando..." : "Solicitar Asesoría Gratuita"}
+                  {isLoading ? "Enviando..." : "🎯 Solicitar Asesoría Gratuita"}
                 </Button>
               </form>
             </div>
