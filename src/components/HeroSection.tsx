@@ -107,18 +107,18 @@ const HeroSection = () => {
             </p>
 
             {/* Stats Highlight */}
-            <div className="inline-flex items-center bg-stats text-stats-foreground px-6 py-3 rounded-lg font-bold text-xl shadow-lg">
+            <div className="inline-flex items-center px-6 py-3 rounded-lg font-bold text-xl shadow-lg" style={{backgroundColor: '#6EE7B7', color: '#1F2937'}}>
               <span className="text-2xl mr-2">💰</span>
               $134B en ventas automatizadas
             </div>
 
             {/* Contrast Phrases */}
             <div className="space-y-3 text-sm md:text-base">
-              <div className="flex items-center space-x-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-center">
                 <span className="text-red-500 line-through">Antes: 8 horas al día en redes</span>
-                <span className="text-success font-semibold">→ Ahora: 100% automático</span>
+                <span className="text-success font-semibold">→ Ahora: 99.9% automático</span>
               </div>
-              <div className="flex items-center space-x-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 items-center">
                 <span className="text-red-500 line-through">Antes: Perder clientes por no responder</span>
                 <span className="text-success font-semibold">→ Ahora: Respuesta instantánea 24/7</span>
               </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const TechnologiesSection = () => {
   const [hoveredTech, setHoveredTech] = useState<string | null>(null);
@@ -55,40 +55,67 @@ const TechnologiesSection = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-12">
-            {technologies.map((tech, index) => (
-              <div
-                key={index}
-                className={`
-                  relative p-6 rounded-xl border-2 transition-all duration-300 cursor-pointer
-                  ${hoveredTech === tech.name
-                    ? `bg-gradient-to-br ${getCategoryColor(tech.category)} text-white border-transparent shadow-xl scale-105`
-                    : 'bg-card border-border hover:border-accent/50'
-                  }
-                `}
-                onMouseEnter={() => setHoveredTech(tech.name)}
-                onMouseLeave={() => setHoveredTech(null)}
-              >
-                <div className="text-center">
-                  <h3 className={`font-bold text-lg mb-2 transition-colors ${
-                    hoveredTech === tech.name ? 'text-white' : 'text-foreground'
-                  }`}>
-                    {tech.name}
-                  </h3>
-                  <p className={`text-sm transition-colors ${
-                    hoveredTech === tech.name ? 'text-white/80' : 'text-muted-foreground'
-                  }`}>
-                    {tech.category}
-                  </p>
+          {/* Carrusel animado */}
+          <div className="relative overflow-hidden mb-12">
+            <div 
+              className="flex space-x-6 hover:pause-animation"
+              style={{
+                animation: 'scroll-left 30s linear infinite',
+                width: 'calc(200% + 24px)' // Ancho para las tecnologías duplicadas + espacios
+              }}
+            >
+              {/* Duplicamos las tecnologías para crear un loop infinito */}
+              {[...technologies, ...technologies].map((tech, index) => (
+                <div
+                  key={index}
+                  className={`
+                    relative p-6 rounded-xl border-2 transition-all duration-300 cursor-pointer flex-shrink-0 w-48
+                    ${hoveredTech === tech.name
+                      ? `bg-gradient-to-br ${getCategoryColor(tech.category)} text-white border-transparent shadow-xl scale-105`
+                      : 'bg-card border-border hover:border-accent/50'
+                    }
+                  `}
+                  onMouseEnter={() => setHoveredTech(tech.name)}
+                  onMouseLeave={() => setHoveredTech(null)}
+                >
+                  <div className="text-center">
+                    <h3 className={`font-bold text-lg mb-2 transition-colors ${
+                      hoveredTech === tech.name ? 'text-white' : 'text-foreground'
+                    }`}>
+                      {tech.name}
+                    </h3>
+                    <p className={`text-sm transition-colors ${
+                      hoveredTech === tech.name ? 'text-white/80' : 'text-muted-foreground'
+                    }`}>
+                      {tech.category}
+                    </p>
+                  </div>
+                  
+                  {/* Glow effect when hovered */}
+                  {hoveredTech === tech.name && (
+                    <div className="absolute inset-0 rounded-xl blur-xl opacity-30 bg-gradient-to-br from-white to-transparent"></div>
+                  )}
                 </div>
-                
-                {/* Glow effect when hovered */}
-                {hoveredTech === tech.name && (
-                  <div className="absolute inset-0 rounded-xl blur-xl opacity-30 bg-gradient-to-br from-white to-transparent"></div>
-                )}
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+
+          {/* CSS personalizado para la animación */}
+          <style dangerouslySetInnerHTML={{
+            __html: `
+              @keyframes scroll-left {
+                0% {
+                  transform: translateX(0);
+                }
+                100% {
+                  transform: translateX(-50%);
+                }
+              }
+              .hover\\:pause-animation:hover {
+                animation-play-state: paused !important;
+              }
+            `
+          }} />
 
           <div className="text-center">
             <div className="bg-gradient-to-r from-accent via-success to-purple p-1 rounded-xl inline-block">

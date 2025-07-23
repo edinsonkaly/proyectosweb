@@ -25,7 +25,7 @@ const phases = [
 
 const MethodologySection = () => {
   return (
-    <section id="methodology" className="py-20 bg-primary text-white">
+    <section id="methodology" className="py-20 text-gray-800" style={{backgroundColor: '#F5F3FF'}}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
@@ -43,8 +43,8 @@ const MethodologySection = () => {
                   alt={phase.title}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-                {/* Dark overlay */}
-                <div className="absolute inset-0 bg-primary/60" />
+                {/* Light overlay */}
+                <div className="absolute inset-0 bg-white/80" />
                 
                 {/* Content */}
                 <div className="absolute inset-0 flex flex-col justify-end p-6">
@@ -54,7 +54,7 @@ const MethodologySection = () => {
                     </div>
                     <h3 className="text-xl font-bold">{phase.title}</h3>
                   </div>
-                  <p className="text-white/90 leading-relaxed">
+                  <p className="text-gray-700 leading-relaxed">
                     {phase.description}
                   </p>
                 </div>
