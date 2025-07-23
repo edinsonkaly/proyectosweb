@@ -174,7 +174,7 @@ const HeroSection = () => {
                 
                 <Button 
                   type="submit" 
-                  className="w-full text-lg py-6 bg-gradient-to-r from-success via-accent to-purple text-white font-semibold hover:opacity-90 transition-all"
+                  className="w-full text-lg py-6 bg-purple text-purple-foreground font-semibold hover:opacity-90 transition-all shadow-lg"
                   disabled={isLoading}
                 >
                   {isLoading ? "Enviando..." : "🎯 Solicitar Asesoría Gratuita"}

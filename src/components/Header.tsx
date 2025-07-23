@@ -47,7 +47,7 @@ const Header = () => {
             <a href="#" className="text-foreground hover:text-accent transition-colors">
               Acerca De
             </a>
-            <button className="bg-gradient-to-r from-success via-accent to-purple text-white px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition-all">
+            <button className="bg-purple text-purple-foreground px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition-all shadow-lg">
               Consulta Gratis
             </button>
           </nav>

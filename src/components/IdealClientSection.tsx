@@ -63,11 +63,11 @@ const IdealClientSection = () => {
           </div>
 
           <div className="mt-12">
-            <div className="bg-gradient-to-r from-success via-accent to-purple p-1 rounded-lg inline-block">
+            <div className="bg-gradient-to-r from-purple via-accent to-success p-1 rounded-lg inline-block">
               <div className="bg-background px-8 py-4 rounded-lg">
                 <p className="text-lg font-semibold text-foreground">
                   Si te identificas con los puntos verdes, 
-                  <span className="text-accent"> ¡estás en el lugar correcto!</span>
+                  <span className="text-purple"> ¡estás en el lugar correcto!</span>
                 </p>
               </div>
             </div>
