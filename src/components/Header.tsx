@@ -37,8 +37,8 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <img src={logo} alt="Impulso E-Marcketing'ia Logo" className="h-10 w-10" />
-            <span className="text-xl font-bold text-foreground">Impulso E-Marcketing'ia</span>
+            <img src={logo} alt="Impulso Marketing IA Logo" className="h-10 w-10" />
+            <span className="text-xl font-bold text-foreground">Impulso Marketing IA</span>
           </div>
 
           {/* Desktop Main Menu */}

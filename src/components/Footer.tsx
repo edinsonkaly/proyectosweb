@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-accent">Impulso E-Marcketing'ia</h3>
+            <h3 className="text-xl font-bold mb-4 text-accent">Impulso Marketing IA</h3>
             <p className="text-muted-foreground mb-4">
               Soluciones que venden por ti mientras tú vives. Tu negocio en automático y tus ventas en piloto automático.
             </p>
@@ -68,7 +68,7 @@ const Footer = () => {
 
         <div className="border-t border-border mt-12 pt-8 text-center">
           <p className="text-muted-foreground">
-            © 2024 Impulso E-Marcketing'ia. Automatizando el futuro de tu negocio.
+            © 2024 Impulso Marketing IA. Automatizando el futuro de tu negocio.
           </p>
         </div>
       </div>

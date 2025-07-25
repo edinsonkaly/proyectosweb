@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favicon Generator for EON SAM AI</title>
+</head>
+<body>
+    <canvas id="canvas" width="32" height="32" style="border: 1px solid #ccc; image-rendering: pixelated; width: 128px; height: 128px;"></canvas>
+    <br><br>
+    <button onclick="downloadFavicon()">Download favicon.ico</button>
+    
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Create gradient background
+        const gradient = ctx.createLinearGradient(0, 0, 32, 32);
+        gradient.addColorStop(0, '#6366f1');
+        gradient.addColorStop(1, '#8b5cf6');
+        
+        // Draw background circle
+        ctx.fillStyle = gradient;
+        ctx.beginPath();
+        ctx.arc(16, 16, 15, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Draw border
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        
+        // Draw neural network pattern
+        ctx.strokeStyle = '#06b6d4';
+        ctx.lineWidth = 1;
+        ctx.globalAlpha = 0.8;
+        
+        // Neural connections
+        ctx.beginPath();
+        ctx.moveTo(8, 12); ctx.lineTo(16, 8); ctx.lineTo(24, 12);
+        ctx.moveTo(8, 20); ctx.lineTo(16, 24); ctx.lineTo(24, 20);
+        ctx.moveTo(8, 12); ctx.lineTo(8, 20);
+        ctx.moveTo(24, 12); ctx.lineTo(24, 20);
+        ctx.moveTo(8, 12); ctx.lineTo(16, 16); ctx.lineTo(24, 12);
+        ctx.moveTo(8, 20); ctx.lineTo(16, 16); ctx.lineTo(24, 20);
+        ctx.stroke();
+        
+        ctx.globalAlpha = 1;
+        
+        // Draw neural nodes
+        ctx.fillStyle = '#ffffff';
+        [[8,12,2], [16,8,2], [24,12,2], [16,16,2.5], [8,20,2], [16,24,2], [24,20,2]].forEach(([x,y,r]) => {
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, 2 * Math.PI);
+            ctx.fill();
+        });
+        
+        // Central AI core
+        const coreGradient = ctx.createLinearGradient(14, 14, 18, 18);
+        coreGradient.addColorStop(0, '#06b6d4');
+        coreGradient.addColorStop(1, '#3b82f6');
+        ctx.fillStyle = coreGradient;
+        ctx.beginPath();
+        ctx.arc(16, 16, 1.5, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // Add "AI" text
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 6px Arial';
+        ctx.textAlign = 'center';
+        ctx.globalAlpha = 0.9;
+        ctx.fillText('AI', 16, 18);
+        
+        function downloadFavicon() {
+            const link = document.createElement('a');
+            link.download = 'favicon.ico';
+            link.href = canvas.toDataURL('image/x-icon');
+            link.click();
+        }
+    </script>
+</body>
+</html>
