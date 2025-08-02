@@ -25,14 +25,14 @@ const UrgencySection = () => {
   ];
 
   return (
-    <section id="urgency" className="py-20 bg-gradient-to-b from-red-50 to-orange-50">
+    <section id="urgency" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              ⚠️ ¿Qué pasa si no automatizas?
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-electric-blue mb-4">
+              ¿Qué pasa si <span className="text-warning-red">no automatizas?</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-xl text-dark-gray-text max-w-3xl mx-auto">
               El costo de no actuar es más alto que el costo de automatizar. 
               Cada día que pasa sin automatización es dinero y oportunidades perdidas.
             </p>
@@ -42,16 +42,16 @@ const UrgencySection = () => {
             {consequences.map((item, index) => {
               const Icon = item.icon;
               return (
-                <div key={index} className="bg-card p-8 rounded-xl shadow-lg border-l-4 border-red-500">
+                <div key={index} className="bg-white p-6 rounded-xl shadow-md border border-warning-red/30">
                   <div className="flex items-start space-x-4">
-                    <div className="bg-red-100 p-3 rounded-lg">
-                      <Icon className="h-6 w-6 text-red-600" />
+                    <div className="bg-warning-red/10 p-3 rounded-lg">
+                      <Icon className="h-6 w-6 text-warning-red" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-foreground mb-3">
+                      <h3 className="text-xl font-bold text-electric-blue mb-3">
                         {item.title}
                       </h3>
-                      <p className="text-muted-foreground leading-relaxed">
+                      <p className="text-dark-gray-text leading-relaxed">
                         {item.description}
                       </p>
                     </div>
@@ -62,17 +62,13 @@ const UrgencySection = () => {
           </div>
 
           {/* Urgency Call to Action */}
-          <div className="bg-gradient-to-r from-red-500 to-orange-500 p-8 rounded-2xl text-center text-white">
-            <h3 className="text-3xl font-bold mb-4">
-              ⏰ El momento de actuar es AHORA
-            </h3>
-            <p className="text-xl mb-6 opacity-90">
-              Cada día que esperas, tu competencia se adelanta más. 
-              No dejes que el miedo al cambio te cueste el futuro de tu negocio.
-            </p>
-            <div className="bg-white p-6 rounded-lg inline-block">
-              <p className="text-foreground text-lg font-semibold">
-                La automatización que implementes hoy, será la ventaja competitiva de mañana
+          <div className="bg-gradient-to-r from-digital-purple to-tech-cyan p-1 rounded-2xl text-center">
+            <div className="bg-white p-8 rounded-xl">
+              <h3 className="text-3xl font-heading font-bold text-electric-blue mb-4">
+                El momento de actuar es <span className="text-warning-red">AHORA</span>
+              </h3>
+              <p className="text-xl mb-6 text-dark-gray-text max-w-2xl mx-auto">
+                No dejes que la inacción te cueste el futuro de tu negocio. La automatización que implementes hoy será tu ventaja competitiva de mañana.
               </p>
             </div>
           </div>

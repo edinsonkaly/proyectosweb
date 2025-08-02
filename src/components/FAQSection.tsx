@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import faqImage from "@/assets/faq-professional.jpg";
+import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
@@ -33,61 +32,43 @@ const FAQSection = () => {
   };
 
   return (
-    <section id="faq" className="py-20 bg-background">
+    <section id="faq" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column - Image */}
-          <div className="order-2 lg:order-1 relative">
-            <div className="relative overflow-hidden rounded-xl shadow-2xl">
-              <img 
-                src={faqImage} 
-                alt="Profesional considerando estrategias de IA" 
-                className="w-full h-auto object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
-            </div>
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-orange-400 rounded-full opacity-20 blur-xl"></div>
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-blue-500 rounded-full opacity-15 blur-2xl"></div>
-          </div>
-          
-          {/* Right Column - FAQ */}
-          <div className="order-1 lg:order-2">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-8">
-              Preguntas
-              <span className="block text-accent">Frecuentes</span>
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-electric-blue mb-4">
+              Preguntas Frecuentes
             </h2>
-            
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <div 
-                  key={index}
-                  className="border border-border rounded-lg overflow-hidden"
+            <p className="text-xl text-dark-gray-text max-w-3xl mx-auto">
+              Resolvemos tus dudas para que tomes la mejor decisión con total confianza.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            {faqs.map((faq, index) => (
+              <div key={index} className="border-b border-gray-200 last:border-b-0">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="w-full py-6 text-left flex items-center justify-between transition-colors duration-300 group"
                 >
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className="w-full p-6 text-left bg-card hover:bg-muted transition-colors duration-200 flex items-center justify-between"
-                  >
-                    <span className="font-semibold text-foreground pr-4">
-                      {faq.question}
-                    </span>
-                    {openIndex === index ? (
-                      <ChevronUp className="w-5 h-5 text-accent flex-shrink-0" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5 text-accent flex-shrink-0" />
-                    )}
-                  </button>
-                  
-                  {openIndex === index && (
-                    <div className="p-6 bg-muted border-t border-border">
-                      <p className="text-muted-foreground leading-relaxed">
-                        {faq.answer}
-                      </p>
-                    </div>
-                  )}
+                  <span className="text-xl font-medium text-dark-gray-text group-hover:text-electric-blue">
+                    {faq.question}
+                  </span>
+                  <ChevronDown 
+                    className={`w-6 h-6 text-digital-purple flex-shrink-0 transition-transform duration-300 ${openIndex === index ? 'transform rotate-180' : ''}`}
+                  />
+                </button>
+                <div 
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === index ? 'max-h-96' : 'max-h-0'}`}
+                >
+                  <div className="pb-6 pr-8">
+                    <p className="text-dark-gray-text/80 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -19,6 +19,12 @@ export default {
 		},
 		extend: {
 			colors: {
+        'electric-blue': '#0A1F66',
+        'digital-purple': '#7E3FF2',
+        'tech-cyan': '#01F9C6',
+        'light-gray-text': '#E0E0E0',
+        'dark-gray-text': '#333333',
+        'warning-red': '#FF4151',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -76,7 +82,8 @@ export default {
 				}
 			},
 			fontFamily: {
-				sans: ['Inter', 'system-ui', 'sans-serif'],
+				heading: ['Montserrat', 'sans-serif'],
+				sans: ['Open Sans', 'Inter', 'system-ui', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

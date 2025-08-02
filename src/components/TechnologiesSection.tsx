@@ -1,133 +1,63 @@
-import { useState, useEffect } from "react";
+
+
+const technologies = [
+  { name: "OpenAI", logo: "/logos/openai.svg" },
+  { name: "Zapier", logo: "/logos/zapier.svg" },
+  { name: "n8n", logo: "/logos/n8n.svg" },
+  { name: "Make", logo: "/logos/make.svg" },
+  { name: "Evolution API", logo: "/logos/evolution-api.svg" },
+  { name: "Gemini", logo: "/logos/gemini.svg" },
+  { name: "Zoho", logo: "/logos/zoho.svg" },
+  { name: "Supabase", logo: "/logos/supabase.svg" },
+  { name: "Airtable", logo: "/logos/airtable.svg" },
+  { name: "Qdrant", logo: "/logos/qdrant.svg" },
+  { name: "PostgreSQL", logo: "/logos/postgresql.svg" },
+  { name: "HubSpot", logo: "/logos/hubspot.svg" },
+  { name: "Mautic", logo: "/logos/mautic.svg" },
+  { name: "Cal.com", logo: "/logos/calcom.svg" },
+  { name: "Notion", logo: "/logos/notion.svg" },
+  { name: "WhatsApp API", logo: "/logos/whatsapp.svg" },
+];
 
 const TechnologiesSection = () => {
-  const [hoveredTech, setHoveredTech] = useState<string | null>(null);
-
-  const technologies = [
-    { name: "OpenAI", category: "IA" },
-    { name: "Zapier", category: "Automatización" },
-    { name: "n8n", category: "Automatización" },
-    { name: "Make", category: "Automatización" },
-    { name: "Evolution API", category: "WhatsApp" },
-    { name: "Gemini", category: "IA Google" },
-    { name: "Zoho", category: "CRM" },
-    { name: "Supabase", category: "Base de datos" },
-    { name: "Airtable", category: "Gestión" },
-    { name: "Qdrant", category: "IA Vectorial" },
-    { name: "PostgreSQL", category: "Base de datos" },
-    { name: "HubSpot", category: "Marketing" },
-    { name: "Mautic", category: "Email Marketing" },
-    { name: "Cal.com", category: "Agendamiento" },
-    { name: "Notion", category: "Productividad" },
-    { name: "WhatsApp API", category: "Mensajería" }
-  ];
-
-  const getCategoryColor = (category: string) => {
-    const colors = {
-      "IA": "from-purple via-purple-500 to-purple-600",
-      "Automatización": "from-success via-green-500 to-green-600", 
-      "WhatsApp": "from-green-500 via-green-600 to-green-700",
-      "IA Google": "from-blue-500 via-blue-600 to-blue-700",
-      "CRM": "from-orange-500 via-accent to-orange-600",
-      "Base de datos": "from-slate-500 via-slate-600 to-slate-700",
-      "Gestión": "from-yellow-500 via-yellow-600 to-yellow-700",
-      "IA Vectorial": "from-indigo-500 via-indigo-600 to-indigo-700",
-      "Marketing": "from-pink-500 via-pink-600 to-pink-700",
-      "Email Marketing": "from-red-500 via-red-600 to-red-700",
-      "Agendamiento": "from-cyan-500 via-cyan-600 to-cyan-700",
-      "Productividad": "from-emerald-500 via-emerald-600 to-emerald-700",
-      "Mensajería": "from-green-600 via-green-700 to-green-800"
-    };
-    return colors[category as keyof typeof colors] || "from-gray-500 via-gray-600 to-gray-700";
-  };
-
   return (
-    <section id="technologies" className="py-20 bg-background">
+    <section id="technologies" className="py-20 bg-white">
       <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              🛠️ Tecnologías que dominamos
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Integramos las mejores herramientas del mercado para crear soluciones 
-              automatizadas que realmente funcionen para tu negocio.
-            </p>
-          </div>
-
-          {/* Carrusel animado */}
-          <div className="relative overflow-hidden mb-12">
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-heading font-bold text-electric-blue mb-4">
+            Tecnologías que Dominamos
+          </h2>
+          <p className="text-xl text-dark-gray-text max-w-3xl mx-auto">
+            Integramos las mejores herramientas del mercado para crear soluciones 
+            automatizadas que realmente funcionen para tu negocio.
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-center">
+          {technologies.map((tech) => (
             <div 
-              className="flex space-x-6 hover:pause-animation"
-              style={{
-                animation: 'scroll-left 30s linear infinite',
-                width: 'calc(200% + 24px)' // Ancho para las tecnologías duplicadas + espacios
-              }}
+              key={tech.name} 
+              className="p-4 flex justify-center items-center group"
             >
-              {/* Duplicamos las tecnologías para crear un loop infinito */}
-              {[...technologies, ...technologies].map((tech, index) => (
-                <div
-                  key={index}
-                  className={`
-                    relative p-6 rounded-xl border-2 transition-all duration-300 cursor-pointer flex-shrink-0 w-48
-                    ${hoveredTech === tech.name
-                      ? `bg-gradient-to-br ${getCategoryColor(tech.category)} text-white border-transparent shadow-xl scale-105`
-                      : 'bg-card border-border hover:border-accent/50'
-                    }
-                  `}
-                  onMouseEnter={() => setHoveredTech(tech.name)}
-                  onMouseLeave={() => setHoveredTech(null)}
-                >
-                  <div className="text-center">
-                    <h3 className={`font-bold text-lg mb-2 transition-colors ${
-                      hoveredTech === tech.name ? 'text-white' : 'text-foreground'
-                    }`}>
-                      {tech.name}
-                    </h3>
-                    <p className={`text-sm transition-colors ${
-                      hoveredTech === tech.name ? 'text-white/80' : 'text-muted-foreground'
-                    }`}>
-                      {tech.category}
-                    </p>
-                  </div>
-                  
-                  {/* Glow effect when hovered */}
-                  {hoveredTech === tech.name && (
-                    <div className="absolute inset-0 rounded-xl blur-xl opacity-30 bg-gradient-to-br from-white to-transparent"></div>
-                  )}
-                </div>
-              ))}
+              <img 
+                src={tech.logo} 
+                alt={tech.name} 
+                className="h-10 w-auto object-contain transition-all duration-300 filter grayscale group-hover:grayscale-0 group-hover:scale-110"
+                title={tech.name}
+              />
             </div>
-          </div>
-
-          {/* CSS personalizado para la animación */}
-          <style dangerouslySetInnerHTML={{
-            __html: `
-              @keyframes scroll-left {
-                0% {
-                  transform: translateX(0);
-                }
-                100% {
-                  transform: translateX(-50%);
-                }
-              }
-              .hover\\:pause-animation:hover {
-                animation-play-state: paused !important;
-              }
-            `
-          }} />
-
-          <div className="text-center">
-            <div className="bg-gradient-to-r from-accent via-success to-purple p-1 rounded-xl inline-block">
-              <div className="bg-background px-8 py-6 rounded-xl">
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  🎯 ¿Por qué usamos estas tecnologías?
-                </h3>
-                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                  Cada herramienta está cuidadosamente seleccionada para crear un ecosistema 
-                  completo que automatice todos los aspectos de tu negocio digital.
-                </p>
-              </div>
+          ))}
+        </div>
+        <div className="mt-20 text-center">
+          <div className="inline-block p-1 bg-gradient-to-r from-digital-purple to-tech-cyan rounded-2xl">
+            <div className="bg-white px-8 py-6 rounded-xl">
+              <h3 className="text-2xl font-heading font-bold text-electric-blue mb-4">
+                ¿Por qué estas tecnologías?
+              </h3>
+              <p className="text-lg text-dark-gray-text max-w-2xl mx-auto">
+                Cada herramienta está cuidadosamente seleccionada para crear un ecosistema 
+                completo que automatice todos los aspectos de tu negocio digital.
+              </p>
             </div>
           </div>
         </div>
