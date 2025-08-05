@@ -120,7 +120,7 @@ const HeroSection = () => {
     
     setIsLoading(true);
     try {
-      await fetch("https://workflow.edinsonsamame.online/webhook/93cdb2cf-9890-4585-9876-8b5f38a7ad70", {
+      await fetch(import.meta.env.VITE_APP_WEBHOOK_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         mode: "no-cors",
@@ -164,7 +164,7 @@ const HeroSection = () => {
       <div 
         className="absolute inset-0 w-full h-full"
         style={{
-          background: `linear-gradient(0deg, rgba(10, 31, 102, 0.9), rgba(10, 31, 102, 0.9)), url(${heroBg}) no-repeat center center`,
+          background: `linear-gradient(0deg, rgba(10, 31, 102, 0.85), rgba(10, 31, 102, 0.85)), url(${heroBg}) no-repeat center center`,
           backgroundSize: 'cover',
           backgroundAttachment: 'fixed',
           zIndex: 0
@@ -182,9 +182,9 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-12 items-center justify-items-center">
           {/* Left Column - Text */}
           <div className="w-full max-w-2xl mx-auto space-y-8 text-center md:text-center lg:text-left px-4">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight [text-shadow:_0_2px_10px_rgba(0,0,0,0.9)]">
               Soluciones que venden por ti
-              <span className="block text-digital-purple">mientras tú vives</span>
+              <span className="block text-digital-purple [text-shadow:_0_2px_10px_rgba(0,0,0,0.9)]">mientras tú vives</span>
             </h1>
             
             <div className="space-y-3 text-lg md:text-xl text-light-gray-text leading-relaxed max-w-xl">

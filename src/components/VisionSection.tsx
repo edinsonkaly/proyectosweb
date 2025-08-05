@@ -2,7 +2,10 @@ import professionalImage from "@/assets/professional.jpg";
 
 const VisionSection = () => {
   return (
-    <section id="vision" className="py-20 bg-white">
+    <section id="vision" className="py-20 bg-white" style={{
+      backgroundImage: 'radial-gradient(#E5E7EB 1px, transparent 1px)',
+      backgroundSize: '24px 24px'
+    }}>
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Column */}

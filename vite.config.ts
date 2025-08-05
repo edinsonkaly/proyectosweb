@@ -5,20 +5,29 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: './',
+  base: '/', // Usamos rutas relativas para mayor compatibilidad
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
+    emptyOutDir: true,
+    sourcemap: false,
+    minify: 'terser',
     rollupOptions: {
       output: {
-        manualChunks: undefined,
+        manualChunks: {
+          react: ['react', 'react-dom', 'react-router-dom'],
+          vendor: ['framer-motion', '@radix-ui/react-dialog', 'lucide-react'],
+        },
+      },
+    },
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
       },
     },
   },
-  server: {
-    host: "::",
-    port: 8080,
-  },
+  // Configuración del servidor eliminada ya que no es necesaria para producción
   plugins: [
     react(),
     ...(mode === 'development' ? [componentTagger()] : []),

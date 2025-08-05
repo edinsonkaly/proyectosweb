@@ -9,7 +9,7 @@ const WhatsAppButton = () => {
     position: 'fixed',
     bottom: '24px',
     right: '24px',
-    zIndex: 9999,
+    zIndex: 100, // Aumentado para que esté por encima de otros elementos fijos
     backgroundColor: '#25D366', // Verde de WhatsApp
     color: 'white',
     width: '56px',
@@ -37,7 +37,7 @@ const WhatsAppButton = () => {
     backgroundColor: 'white',
     borderRadius: '8px',
     boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-    zIndex: 10000,
+    zIndex: 101, // Aumentado para que esté por encima del botón
     overflow: 'hidden',
     border: '1px solid #e5e7eb',
     animation: 'fadeIn 0.2s ease-out'

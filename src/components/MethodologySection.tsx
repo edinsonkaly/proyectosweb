@@ -25,7 +25,10 @@ const phases = [
 
 const MethodologySection = () => {
   return (
-    <section id="methodology" className="py-20 bg-white">
+    <section id="methodology" className="py-20 bg-white" style={{
+      backgroundImage: 'radial-gradient(#E5E7EB 1px, transparent 1px)',
+      backgroundSize: '24px 24px'
+    }}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-electric-blue mb-4">

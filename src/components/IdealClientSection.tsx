@@ -1,5 +1,21 @@
 import { Check, X } from "lucide-react";
 
+// Custom CheckCircle component
+const CheckCircle = () => (
+  <svg className="h-6 w-6 text-digital-purple flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M22 4 12 14.01l-3-3" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+// Custom XSquare component
+const XSquare = () => (
+  <svg className="h-6 w-6 text-warning-red flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+    <rect x="3" y="3" width="18" height="18" rx="4" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M9 9l6 6m0-6l-6 6" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
 const IdealClientSection = () => {
   const idealProfile = [
     "Tienes un negocio en crecimiento pero sin presencia digital sólida",
@@ -18,7 +34,10 @@ const IdealClientSection = () => {
   ];
 
   return (
-    <section id="ideal-client" className="py-20 bg-white">
+    <section id="ideal-client" className="py-20 bg-white" style={{
+      backgroundImage: 'radial-gradient(#E5E7EB 1px, transparent 1px)',
+      backgroundSize: '24px 24px'
+    }}>
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-heading font-bold text-electric-blue mb-4">
@@ -28,46 +47,85 @@ const IdealClientSection = () => {
             Descubre si nuestras soluciones son perfectas para tu negocio
           </p>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
             {/* Es para ti */}
-            <div className="bg-white p-8 rounded-xl shadow-md border border-digital-purple/20">
-              <h3 className="text-2xl font-bold text-digital-purple mb-6 flex items-center">
-                <Check className="h-6 w-6 mr-3" />
+            <div className="group relative">
+              {/* Gradient Shadow */}
+              <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-digital-purple/30 to-tech-cyan/30 blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative bg-white p-8 rounded-xl transition-all duration-300 hover:-translate-y-1 border-0 overflow-hidden h-full flex flex-col">
+                {/* Gradient Border */}
+                <div className="absolute inset-0 rounded-xl p-[1px]" style={{
+                  background: 'linear-gradient(135deg, #7E3FF2 0%, #01F9C6 100%)',
+                  WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  WebkitMaskComposite: 'xor',
+                  maskComposite: 'exclude',
+                  opacity: 0.8
+                }} />
+              
+              <h3 className="text-2xl font-heading font-bold text-digital-purple mb-6 flex items-center">
+                <span className="inline-flex items-center justify-center mr-3">
+                  <CheckCircle />
+                </span>
                 Es perfecto para ti si:
               </h3>
               <ul className="space-y-4 text-left">
                 {idealProfile.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
-                    <Check className="h-5 w-5 text-digital-purple mt-0.5 flex-shrink-0" />
+                    <CheckCircle />
                     <span className="text-dark-gray-text">{item}</span>
                   </li>
                 ))}
               </ul>
+              </div>
             </div>
 
             {/* No es para ti */}
-            <div className="bg-white p-8 rounded-xl shadow-md border border-warning-red/20">
-              <h3 className="text-2xl font-bold text-warning-red mb-6 flex items-center">
-                <X className="h-6 w-6 mr-3" />
+            <div className="group relative">
+              {/* Red Shadow */}
+              <div className="absolute -inset-1 rounded-xl bg-warning-red/30 blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative bg-white p-8 rounded-xl transition-all duration-300 hover:-translate-y-1 border-0 overflow-hidden h-full flex flex-col">
+                {/* Red Border */}
+                <div className="absolute inset-0 rounded-xl p-[1px]" style={{
+                  background: '#FF4A4A',
+                  WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                  WebkitMaskComposite: 'xor',
+                  maskComposite: 'exclude',
+                  opacity: 0.8
+                }} />
+              
+              <h3 className="text-2xl font-heading font-bold text-warning-red mb-6 flex items-center">
+                <span className="inline-flex items-center justify-center mr-3">
+                  <XSquare />
+                </span>
                 No es para ti si:
               </h3>
               <ul className="space-y-4 text-left">
                 {notFor.map((item, index) => (
                   <li key={index} className="flex items-start space-x-3">
-                    <X className="h-5 w-5 text-warning-red mt-0.5 flex-shrink-0" />
+                    <XSquare />
                     <span className="text-dark-gray-text">{item}</span>
                   </li>
                 ))}
               </ul>
+              </div>
             </div>
           </div>
 
-          <div className="mt-12">
-            <div className="mt-12 bg-gradient-to-r from-digital-purple to-tech-cyan p-1 rounded-lg inline-block">
-              <div className="bg-white px-8 py-4 rounded-md">
-                <p className="text-lg font-semibold text-dark-gray-text">
+          <div className="mt-8">
+            <div className="group relative bg-white p-[1px] rounded-xl inline-block transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div className="absolute inset-0 rounded-xl" style={{
+                background: 'linear-gradient(135deg, #7E3FF2 0%, #01F9C6 100%)',
+                WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                WebkitMaskComposite: 'xor',
+                maskComposite: 'exclude',
+                opacity: 0.8
+              }} />
+              <div className="bg-white px-8 py-4 rounded-xl relative z-10">
+                <p className="text-lg font-heading font-semibold text-dark-gray-text">
                   Si te identificas con los puntos positivos, 
-                  <span className="text-digital-purple"> ¡estás en el lugar correcto!</span>
+                  <span className="bg-clip-text text-transparent" style={{
+                    backgroundImage: 'linear-gradient(135deg, #7E3FF2 0%, #01F9C6 100%)'
+                  }}> ¡estás en el lugar correcto!</span>
                 </p>
               </div>
             </div>

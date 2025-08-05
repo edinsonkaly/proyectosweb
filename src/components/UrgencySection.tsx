@@ -25,7 +25,10 @@ const UrgencySection = () => {
   ];
 
   return (
-    <section id="urgency" className="py-20 bg-white">
+    <section id="urgency" className="py-20 bg-white" style={{
+      backgroundImage: 'radial-gradient(#E5E7EB 1px, transparent 1px)',
+      backgroundSize: '24px 24px'
+    }}>
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">

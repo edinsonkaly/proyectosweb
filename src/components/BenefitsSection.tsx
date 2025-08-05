@@ -6,6 +6,7 @@ import {
   BarChart3, 
   Shield 
 } from "lucide-react";
+import benefitsBg from "@/assets/fondo-beneficios.png";
 
 const benefits = [
   {
@@ -42,8 +43,17 @@ const benefits = [
 
 const BenefitsSection = () => {
   return (
-    <section id="benefits" className="py-20 bg-electric-blue">
-      <div className="container mx-auto px-4">
+    <section id="benefits" className="relative py-20 bg-electric-blue">
+      <div 
+        className="absolute inset-0 w-full h-full"
+        style={{
+          background: `linear-gradient(0deg, rgba(10, 31, 102, 0.95), rgba(10, 31, 102, 0.95)), url(${benefitsBg}) no-repeat center center`,
+          backgroundSize: 'cover',
+          backgroundAttachment: 'fixed',
+          zIndex: 0
+        }}
+      />
+      <div className="container relative z-10 mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
             🚀 ¿Por qué automatizar tu negocio?
