@@ -1,6 +1,7 @@
 import phase1Image from "@/assets/phase1.jpg";
 import phase2Image from "@/assets/phase2.jpg";
 import phase3Image from "@/assets/phase3.jpg";
+import { useFadeInOnScroll, useStaggeredAnimation, GranularBackground } from '@/utils/techNoirAnimations';
 
 const phases = [
   {
@@ -24,24 +25,33 @@ const phases = [
 ];
 
 const MethodologySection = () => {
+  const titleAnimation = useFadeInOnScroll(0);
+  const { containerRef, getItemStyle } = useStaggeredAnimation(phases.length, 200);
+  
   return (
-    <section id="methodology" className="py-20 bg-white" style={{
+    <section id="methodology" className="py-20 bg-white relative overflow-hidden" style={{
       backgroundImage: 'radial-gradient(#E5E7EB 1px, transparent 1px)',
       backgroundSize: '24px 24px'
     }}>
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-electric-blue mb-4">
+      {/* Fondo granulado horizontal alternando orientación */}
+      <GranularBackground orientation="horizontal" opacity={0.02} />
+      
+      {/* Efecto de flujo de datos */}
+      <div className="absolute inset-0 z-[1] data-stream opacity-15" />
+      <div className="container mx-auto px-4 relative z-10">
+        <div ref={titleAnimation.ref} style={titleAnimation.style} className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-electric-blue mb-4 tech-glitch-low" data-text="Implementación Estratégica">
             Implementación Estratégica
-            <span className="block text-digital-purple">en 3 Fases</span>
+            <span className="block text-digital-purple neon-glow">en 3 Fases</span>
           </h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
           {phases.map((phase, index) => (
             <div 
-              key={index} 
-              className="relative overflow-hidden rounded-2xl shadow-[0_10px_30px_rgba(126,63,242,0.6)] hover:shadow-[0_15px_50px_rgba(126,63,242,0.8)] hover:-translate-y-2 transition-all duration-300 h-full min-h-[300px] flex flex-col border-2 border-transparent hover:border-[#7E3FF2]/30"
+              key={index}
+              style={getItemStyle(index)}
+              className="relative overflow-hidden rounded-2xl shadow-[0_10px_30px_rgba(126,63,242,0.6)] hover:shadow-[0_15px_50px_rgba(126,63,242,0.8)] hover:-translate-y-2 transition-all duration-300 h-full min-h-[300px] flex flex-col border-2 border-transparent hover:border-[#7E3FF2]/30 tech-border-pulse hover:scale-105"
             >
               {/* Background Image with Blur */}
               <div 

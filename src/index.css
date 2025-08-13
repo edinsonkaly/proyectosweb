@@ -1,154 +1,301 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Open+Sans:wght@400;600;700&display=swap');
+@import './styles/techNoir.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Base animations and variables */
+@keyframes slideInUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulseShadow {
+  0%, 100% { box-shadow: 0 10px 25px -5px rgba(126, 63, 242, 0.2), 0 8px 10px -6px rgba(126, 63, 242, 0.3); }
+  50% { box-shadow: 0 15px 30px -5px rgba(126, 63, 242, 0.3), 0 12px 15px -6px rgba(126, 63, 242, 0.4); }
+}
+
+:root {
+  --color-digital-purple: #7E3FF2;
+  --color-tech-cyan: #01F9C6;
+  --color-electric-blue: #0A1F66;
+}
+
+/* Scroll padding para evitar que el header fijo tape las secciones */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px; /* Ajuste para header fijo */
+  scroll-padding-bottom: 100px; /* Espacio en la parte inferior para secciones al final */
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 80px; /* Menor en móviles */
+    scroll-padding-bottom: 80px; /* Espacio inferior en móviles */
+  }
+}
+
+/* Ajustes específicos para secciones al final de la página */
+#technologies {
+  scroll-margin-top: -120px; /* Menos margen superior */
+  scroll-margin-bottom: 150px; /* Más margen inferior para ver todo el contenido */
+}
+
+#contacto {
+  scroll-margin-top: 8px; /* Menos margen superior */
+  scroll-margin-bottom: 150px; /* Más margen inferior para ver todo el contenido */
+}
+
+#urgency {
+  scroll-margin-top: -100px; /* Menos margen superior */
+  scroll-margin-bottom: 150px; /* Más margen inferior para ver todo el contenido */
+}
+
 @layer base {
   :root {
-    /* Tech-Noir Minimalist Design System */
-    --background: 225 83% 22%; /* electric-blue */
-    --foreground: 0 0% 88%; /* light-gray-text */
-    --card: 225 83% 25%; /* slightly lighter blue */
+    --background: 225 83% 22%;
+    --foreground: 0 0% 88%;
+    --card: 225 83% 25%;
     --card-foreground: 0 0% 88%;
     --popover: 225 83% 22%;
     --popover-foreground: 0 0% 88%;
     --primary: 0 0% 100%;
     --primary-foreground: 225 83% 22%;
     --secondary: 0 0% 100%;
-    --secondary-foreground: 21 21% 21%; /* dark-gray-text */
+    --secondary-foreground: 21 21% 21%;
     --muted: 225 83% 25%;
     --muted-foreground: 0 0% 60%;
-    --accent: 258 88% 60%; /* digital-purple */
+    --accent: 258 88% 60%;
     --accent-foreground: 0 0% 100%;
-    --success: 172 99% 49%; /* tech-cyan */
+    --success: 172 99% 49%;
     --success-foreground: 225 83% 22%;
-    --destructive: 355 100% 63%; /* warning-red */
+    --destructive: 355 100% 63%;
     --destructive-foreground: 0 0% 100%;
-    --border: 258 88% 60%; /* digital-purple for active elements */
+    --border: 258 88% 60%;
     --input: 225 83% 25%;
-    --ring: 172 99% 49%; /* tech-cyan for focus rings */
+    --ring: 172 99% 49%;
     --radius: 0.5rem;
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+  * { @apply border-border; }
+  body { @apply bg-background text-foreground; }
 }
 
 @layer components {
-  /* Glowing border effect */
-  @keyframes glowing-border-animation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  .glowing-button {
+  /* Title scan line animation */
+  .tech-title-scan {
     position: relative;
     overflow: hidden;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    z-index: 1;
-    box-shadow: 0 4px 15px rgba(126, 63, 242, 0.4);
   }
 
-  .glowing-button::before {
+  .tech-title-scan::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(1, 249, 198, 0.2) 20%,
+      rgba(1, 249, 198, 0.6) 50%,
+      rgba(1, 249, 198, 0.2) 80%,
+      transparent 100%
+    );
+    animation: title-scan 3s ease-in-out infinite;
+    opacity: 0;
+  }
+
+  @keyframes title-scan {
+    0% { transform: translateX(-100%); opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { transform: translateX(100%); opacity: 0; }
+  }
+
+  /* Center line between carousels */
+  .tech-center-line {
+    position: relative;
+    margin: 2rem 0;
+  }
+
+  .tech-center-line::before {
+    content: '';
+    position: absolute;
+    left: 0;
     right: 0;
-    bottom: 0;
-    background: linear-gradient(120deg, #7E3FF2, #01F9C6, #7E3FF2);
-    background-size: 200% 200%;
-    z-index: -1;
-    animation: glowing-border 4s linear infinite;
-    border-radius: inherit; /* Asegura que el gradiente siga los bordes redondeados */
+    top: 50%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      rgba(1, 249, 198, 0.4) 20%,
+      rgba(1, 249, 198, 0.8) 50%,
+      rgba(1, 249, 198, 0.4) 80%,
+      transparent 100%
+    );
   }
 
-  .glowing-menu {
-    box-shadow: 0 0 15px 2px rgba(1, 249, 198, 0.4);
-    animation: glowing-menu-border 3s ease-in-out infinite alternate;
+  /* Data bars in the CTA section */
+  .tech-data-bars {
+    display: flex;
+    gap: 4px;
+    height: 40px;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
   }
 
-  @keyframes glowing-menu-border {
-    from {
-      box-shadow: 0 0 10px 0px rgba(1, 249, 198, 0.3);
+  .tech-data-bar {
+    width: 4px;
+    background: linear-gradient(
+      to top,
+      rgba(1, 249, 198, 0.8) 0%,
+      rgba(10, 31, 102, 0.8) 100%
+    );
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    height: 30px;
+    animation: wave 2s ease-in-out infinite;
+    animation-delay: calc(0.1s * var(--i));
+    box-shadow: 0 0 8px rgba(1, 249, 198, 0.4);
+    transform-origin: bottom center;
+  }
+  
+  @keyframes wave {
+    0%, 100% { 
+      height: 15px;
+      opacity: 0.8;
     }
-    to {
-      box-shadow: 0 0 25px 5px rgba(1, 249, 198, 0.5);
+    25% { 
+      height: 30px;
+      opacity: 1;
+    }
+    50% { 
+      height: 20px;
+      opacity: 0.9;
+    }
+    75% { 
+      height: 25px;
+      opacity: 0.95;
     }
   }
 
-  .glowing-button:hover::before {
+  .tech-data-bar::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(255, 255, 255, 0.8) 50%,
+      transparent 100%
+    );
+    animation: data-bar-shine 3s ease-in-out infinite;
+  }
+
+  @keyframes data-bar-pulse {
+    0%, 100% { 
+      transform: scaleY(0.4);
+      opacity: 0.6; 
+    }
+    50% { 
+      transform: scaleY(1);
+      opacity: 1; 
+    }
+  }
+
+  @keyframes data-bar-shine {
+    0% { top: -100%; opacity: 0; }
+    50% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+  }
+
+  /* Carousel styles with hover effects */
+  .tech-carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .tech-logo-container {
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .tech-logo-container:hover {
+    transform: translateY(-5px);
+  }
+
+  .tech-logo-container img {
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+  }
+
+  .tech-logo-container:hover img {
+    filter: grayscale(0%);
+    transform: scale(1.1);
+  }
+
+  .tech-logo-name {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: var(--color-tech-cyan);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .tech-logo-container:hover .tech-logo-name {
     opacity: 1;
   }
 
-  /* Corrige el anclaje del scroll para el header fijo */
-  section[id] {
-    scroll-margin-top: 90px; /* Ajusta este valor a la altura de tu header */
+  /* Marquee animations */
+  @keyframes marquee {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
   }
 
-  /* Estilos para el Header */
+  @keyframes marquee-reverse {
+    0% { transform: translate3d(-50%, 0, 0); }
+    100% { transform: translate3d(0, 0, 0); }
+  }
+
+  .animate-marquee {
+    animation: marquee 15s linear infinite;
+    will-change: transform;
+  }
+
+  .animate-marquee-reverse {
+    animation: marquee-reverse 15s linear infinite;
+    will-change: transform;
+  }
+
+  /* Header styles */
   header {
-    background-color: #0A1F66 !important; /* Fondo #0A1F66 */
-    box-shadow: 0 5px 15px rgba(1, 249, 198, 0.4); /* Sombra #01F9C6 */
+    background-color: #0A1F66 !important;
+    box-shadow: 0 5px 15px rgba(1, 249, 198, 0.4);
     transition: background-color 0.3s ease;
   }
 
   header.scrolled {
-    background-color: rgba(10, 31, 102, 0.9) !important; /* #0A1F66 con transparencia */
+    background-color: rgba(10, 31, 102, 0.9) !important;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
 
-  /* Estilos para el fondo del Hero movidos al componente HeroSection */
+  /* Scroll margin for sections */
+  section {
+    scroll-margin-top: 80px;
+  }
 }

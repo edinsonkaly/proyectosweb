@@ -1,5 +1,6 @@
 import { useEffect, MouseEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useAnalytics } from "@/context/AnalyticsContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,7 @@ import { motion } from "framer-motion";
 const AboutPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { trackClickEvent } = useAnalytics();
 
   const handleContactClick = (e: MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -194,8 +196,15 @@ const AboutPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a 
+                id="btn-agendar-consultoria-about"
                 href="/#contacto" 
-                onClick={handleContactClick}
+                onClick={(e) => {
+                  trackClickEvent({
+                    eventName: 'Click Agendar Consultoría (About Page)',
+                    targetId: 'btn-agendar-consultoria-about'
+                  });
+                  handleContactClick(e);
+                }}
                 className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#7E3FF2] to-[#01F9C6] text-white font-bold rounded-xl hover:shadow-lg hover:shadow-[#7E3FF2]/30 transition-all duration-300"
               >
                 Agendar Consultoría Gratuita

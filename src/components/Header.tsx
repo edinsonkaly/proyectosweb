@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useAnalytics } from '@/context/AnalyticsContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Linkedin, Instagram, Facebook, MessageCircle } from 'lucide-react';
 import logo from "@/assets/intelibrander_logo_white.svg";
+import { useSlideInAnimation } from '@/utils/techNoirAnimations';
 
 const Header = () => {
   const location = useLocation();
@@ -9,11 +11,23 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [shouldHideSecondaryNav, setShouldHideSecondaryNav] = useState(false);
-  const isAboutPage = location.pathname === '/acerca-de-intellibrander';
+  
+  // Animaciones Tech-Noir para el header
+  const logoAnimation = useSlideInAnimation('left', 0);
+  const navAnimation = useSlideInAnimation('right', 200);
+  const socialAnimation = useSlideInAnimation('right', 400);
+  // Normalizar la ruta para manejar con/sin barra final
+  const normalizedPath = location.pathname.replace(/\/$/, '');
+  const isSecondaryPage = [
+    '/acerca-de-intellibrander', 
+    '/politica-de-cookies',
+    '/politica-de-privacidad'
+  ].some(path => normalizedPath === path.replace(/\/$/, ''));
+  const { trackClickEvent } = useAnalytics();
 
   useEffect(() => {
-    // Solo ocultar la navegación secundaria si estamos en la página Acerca De
-    if (isAboutPage) {
+    // Ocultar la navegación secundaria en páginas secundarias
+    if (isSecondaryPage) {
       const timer = setTimeout(() => {
         setShouldHideSecondaryNav(true);
       }, 50); // Pequeño retraso para asegurar que la página se ha renderizado
@@ -22,7 +36,7 @@ const Header = () => {
     } else {
       setShouldHideSecondaryNav(false);
     }
-  }, [isAboutPage, location.pathname]);
+  }, [isSecondaryPage, location.pathname]);
 
   const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -71,14 +85,21 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'scrolled' : ''}`}>
+    <header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${scrolled ? 'scrolled' : ''}`}>
       <div className="container mx-auto px-4">
         {/* Main Navigation */}
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div 
             className="flex items-center space-x-3 cursor-pointer"
-            onClick={() => navigate('/')}
+            onClick={(e) => {
+              if (location.pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              } else {
+                navigate('/');
+              }
+            }}
           >
             <img 
               src={logo} 
@@ -86,14 +107,24 @@ const Header = () => {
               className="h-8 w-auto"
               onClick={(e) => {
                 e.stopPropagation();
-                navigate('/');
+                if (location.pathname === '/') {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                  navigate('/');
+                }
               }}
             />
             <span 
               className="text-xl font-bold text-white hover:text-digital-purple transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
-                navigate('/');
+                if (location.pathname === '/') {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                  navigate('/');
+                }
               }}
             >
               Intellibrander
@@ -115,12 +146,29 @@ const Header = () => {
             >
               Inicio
             </a>
-            <a href="/acerca-de-intellibrander" className="text-white hover:text-digital-purple transition-colors">
+            <a
+              id="btn-nav-acerca-de-header" 
+              href="/acerca-de-intellibrander" 
+              className="text-white hover:text-digital-purple transition-colors"
+              onClick={() => {
+                trackClickEvent({
+                  eventName: 'Click Navegación (Acerca De)', // Nombre descriptivo para tus informes
+                  targetId: 'btn-nav-acerca-de-header' // El mismo ID que le asignaste
+                });
+              }}
+            >
               Acerca De
             </a>
             <a 
               href="/#contacto"
-              onClick={handleContactClick}
+              id="btn-consulta-gratis-header"
+              onClick={(e) => {
+                trackClickEvent({ 
+                  eventName: 'Click Consulta Gratis (Header)', 
+                  targetId: 'btn-consulta-gratis-header' 
+                });
+                handleContactClick(e);
+              }}
               className="glowing-button bg-digital-purple text-white px-6 py-2 rounded-lg font-semibold hover:opacity-90 transition-all inline-block"
             >
               Consulta Gratis
@@ -130,29 +178,62 @@ const Header = () => {
           {/* Social Media Icons */}
           <div className="hidden lg:flex items-center space-x-4">
             <a 
+              id="btn-social-linkedin-header" 
               href="https://linkedin.com/company/intellibrander/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white hover:text-digital-purple transition-colors"
+              onClick={() => {
+                trackClickEvent({
+                  eventName: 'Click Social (LinkedIn)', // Nombre descriptivo para tus informes
+                  targetId: 'btn-social-linkedin-header' // El mismo ID que le asignaste
+                });
+              }}
             >
               <Linkedin className="h-5 w-5" />
             </a>
-            <a href="#" className="text-white hover:text-digital-purple transition-colors">
+            <a
+              id="btn-social-instagram-header" 
+              href="https://www.instagram.com/intellibrander"
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-white hover:text-digital-purple transition-colors"
+              onClick={() => {
+                trackClickEvent({
+                  eventName: 'Click Social (Instagram)', // Nombre descriptivo para tus informes
+                  targetId: 'btn-social-instagram-header' // El mismo ID que le asignaste
+                });
+              }}
+            >
               <Instagram className="h-5 w-5" />
             </a>
             <a 
+              id="btn-social-facebook-header"
               href="https://www.facebook.com/intellibrander" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white hover:text-digital-purple transition-colors"
+              onClick={() => {
+                trackClickEvent({
+                  eventName: 'Click Social (Facebook)', // Nombre descriptivo para tus informes
+                  targetId: 'btn-social-facebook-header' // El mismo ID que le asignaste
+                });
+              }}
             >
               <Facebook className="h-5 w-5" />
             </a>
             <a 
+              id="btn-social-whatsapp-header"
               href="https://api.whatsapp.com/send/?phone=51980187824&text=Hola%2C+acabo+de+visitar+su+p%C3%A1gina+web+y+quisiera+mas+informaci%C3%B3n&type=phone_number&app_absent=0" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-white hover:text-digital-purple transition-colors"
+              onClick={() => {
+                trackClickEvent({
+                  eventName: 'Click Social (WhatsApp)', // Nombre descriptivo para tus informes
+                  targetId: 'btn-social-whatsapp-header' // El mismo ID que le asignaste
+                });
+              }}
             >
               <MessageCircle className="h-5 w-5" />
             </a>
@@ -225,8 +306,20 @@ const Header = () => {
 
           {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden glowing-menu rounded-lg mx-4 my-2">
-            <nav className="bg-electric-blue rounded-lg py-4 space-y-4 px-4">
+          <div className="fixed inset-0 z-[99] bg-black/50 md:hidden" onClick={() => setIsMenuOpen(false)}>
+            <div className="glowing-menu rounded-lg mx-4 my-2 relative z-[100]" onClick={e => e.stopPropagation()}>
+            <nav className="bg-electric-blue rounded-lg py-4 space-y-4 px-4 relative">
+              {/* Botón de cierre */}
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsMenuOpen(false);
+                }}
+                className="absolute top-3 right-3 text-white hover:text-digital-purple transition-colors"
+                aria-label="Cerrar menú"
+              >
+                <X className="h-6 w-6" />
+              </button>
               <a 
                 href="/" 
                 onClick={(e) => {
@@ -281,6 +374,7 @@ const Header = () => {
               </div>
             </nav>
           </div>
+        </div>
         )}
       </div>
     </header>

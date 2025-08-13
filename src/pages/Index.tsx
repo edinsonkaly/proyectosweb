@@ -13,18 +13,20 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-electric-blue"> {/* Aseguramos un color de fondo base */}
       <Header />
-      <HeroSection />
-      <IdealClientSection />
-      <VisionSection />
-      <BenefitsSection />
-      <MethodologySection />
-      <UrgencySection />
-      <TechnologiesSection />
-      <StatsSection />
-      <ContactSection />
-      <FAQSection />
+      <main className="relative z-10"> {/* <-- ESTA ES LA MODIFICACIÓN CLAVE */}
+        <HeroSection />
+        <IdealClientSection />
+        <VisionSection />
+        <BenefitsSection />
+        <MethodologySection />
+        <UrgencySection />
+        <StatsSection />
+        <TechnologiesSection />
+        <ContactSection />
+        <FAQSection />
+      </main>
       <Footer />
     </div>
   );

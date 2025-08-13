@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Plus, X } from 'lucide-react';
+import { useFadeInOnScroll, useStaggeredAnimation, GranularBackground } from '@/utils/techNoirAnimations';
 
 const faqs = [
   {
@@ -26,6 +27,8 @@ const faqs = [
 
 const FAQSection = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const titleAnimation = useFadeInOnScroll(0);
+  const { containerRef, getItemStyle } = useStaggeredAnimation(faqs.length, 150);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -34,16 +37,21 @@ const FAQSection = () => {
   return (
     <section 
       id="faq" 
-      className="py-20 bg-white"
+      className="py-20 bg-white relative overflow-hidden"
       style={{
         backgroundImage: 'radial-gradient(#E5E7EB 1px, transparent 1px)',
         backgroundSize: '24px 24px'
       }}
     >
-      <div className="container mx-auto px-4">
+      {/* Fondo granulado vertical alternando orientación */}
+      <GranularBackground orientation="vertical" opacity={0.02} />
+      
+      {/* Efecto de líneas de escaneo */}
+      <div className="absolute inset-0 z-[1] scanning-lines opacity-10" />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#0A1F66] mb-4 font-montserrat">
+          <div ref={titleAnimation.ref} style={titleAnimation.style} className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#0A1F66] mb-4 font-montserrat tech-glitch-low" data-text="Preguntas Frecuentes">
               Preguntas Frecuentes
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto font-open-sans">

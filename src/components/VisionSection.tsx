@@ -1,22 +1,31 @@
 import professionalImage from "@/assets/professional.jpg";
+import { useFadeInOnScroll, useSlideInAnimation, GranularBackground } from '@/utils/techNoirAnimations';
 
 const VisionSection = () => {
+  const textAnimation = useSlideInAnimation('left', 0);
+  const imageAnimation = useSlideInAnimation('right', 200);
+  
   return (
-    <section id="vision" className="py-20 bg-white" style={{
+    <section id="vision" className="py-20 bg-white relative overflow-hidden" style={{
       backgroundImage: 'radial-gradient(#E5E7EB 1px, transparent 1px)',
       backgroundSize: '24px 24px'
     }}>
-      <div className="container mx-auto px-4">
+      {/* Fondo granulado vertical alternando orientación */}
+      <GranularBackground orientation="vertical" opacity={0.02} />
+      
+      {/* Efecto de cuadrícula cibernética */}
+      <div className="absolute inset-0 z-[1] cyber-grid opacity-10" />
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Column */}
-          <div>
+          <div ref={textAnimation.ref} style={textAnimation.style}>
             <p className="text-digital-purple text-sm font-semibold mb-2 uppercase tracking-wide">
               Una Agencia con Visión de Futuro
             </p>
             
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-electric-blue mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-electric-blue mb-6 leading-tight tech-glitch-low" data-text="Convertimos Datos en">
               Convertimos Datos en
-              <span className="block text-digital-purple">Decisiones Rentables</span>
+              <span className="block text-digital-purple neon-glow">Decisiones Rentables</span>
             </h2>
             
             <p className="text-dark-gray-text text-lg leading-relaxed mb-8">
@@ -39,12 +48,12 @@ const VisionSection = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-6">
-              <div className="bg-white p-6 rounded-lg border border-digital-purple/20 shadow-md">
-                <div className="text-3xl font-bold text-digital-purple mb-2">+80%</div>
+              <div className="bg-white p-6 rounded-lg border border-digital-purple/20 shadow-md tech-border-pulse hover:scale-105 transition-all duration-300">
+                <div className="text-3xl font-bold text-digital-purple mb-2 neon-glow">+80%</div>
                 <div className="text-dark-gray-text text-sm">Más Eficiencia</div>
               </div>
-              <div className="bg-white p-6 rounded-lg border border-tech-cyan/20 shadow-md">
-                <div className="text-3xl font-bold text-tech-cyan mb-2">+70%</div>
+              <div className="bg-white p-6 rounded-lg border border-tech-cyan/20 shadow-md tech-border-pulse hover:scale-105 transition-all duration-300">
+                <div className="text-3xl font-bold text-tech-cyan mb-2 neon-glow">+70%</div>
                 <div className="text-dark-gray-text text-sm">Mejor ROI</div>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAnalytics } from "@/context/AnalyticsContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -11,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useFadeInOnScroll, useSlideInAnimation, GranularBackground } from '@/utils/techNoirAnimations';
 
 const countryCodes = [
   { code: '+51', name: 'Perú', flag: '🇵🇪' },
@@ -38,6 +40,12 @@ const ContactSection = () => {
     countryCode: "+51", // Default to Perú
     privacyPolicy: false,
   });
+  const { visitorId, trackClickEvent } = useAnalytics();
+  
+  // Animaciones Tech-Noir para ContactSection
+  const titleAnimation = useFadeInOnScroll(0);
+  const formAnimation = useSlideInAnimation('left', 200);
+  const calendarAnimation = useSlideInAnimation('right', 400);
 
   const isDateInRange = (date: Date, checkToday = true) => {
     const today = new Date();
@@ -178,11 +186,18 @@ const ContactSection = () => {
       return;
     }
     
+    // Track form submission
+    trackClickEvent({
+      eventName: 'Submit Formulario Contacto',
+      targetId: 'form-contact-section'
+    });
+    
     try {
       // Format the date as YYYY-MM-DD
       const formattedDate = selectedDate.toISOString().split('T')[0];
       
       const payload = {
+        visitor_id: visitorId,
         name: formData.name,
         email: formData.email,
         phone: `${formData.countryCode} ${formData.phone}`,
@@ -308,7 +323,7 @@ const ContactSection = () => {
             {/* Right: Form */}
             <div>
               <h3 className="text-2xl font-bold mb-6 text-center lg:text-left">Completa tus Datos</h3>
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form id="form-contact-section" onSubmit={handleSubmit} className="space-y-4">
                 <div className="relative">
                   <User className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-digital-purple" />
                   <Input 

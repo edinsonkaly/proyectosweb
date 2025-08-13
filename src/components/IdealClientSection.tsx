@@ -1,4 +1,5 @@
 import { Check, X } from "lucide-react";
+import { useFadeInOnScroll, useSlideInAnimation, GranularBackground, DiagonalRays } from '@/utils/techNoirAnimations';
 
 // Custom CheckCircle component
 const CheckCircle = () => (
@@ -17,6 +18,10 @@ const XSquare = () => (
 );
 
 const IdealClientSection = () => {
+  const titleAnimation = useFadeInOnScroll(0);
+  const leftColumnAnimation = useSlideInAnimation('left', 200);
+  const rightColumnAnimation = useSlideInAnimation('right', 400);
+  
   const idealProfile = [
     "Tienes un negocio en crecimiento pero sin presencia digital sólida",
     "Pasas más de 6 horas al día respondiendo mensajes y gestionando redes",
@@ -34,18 +39,35 @@ const IdealClientSection = () => {
   ];
 
   return (
-    <section id="ideal-client" className="py-20 bg-white" style={{
-      backgroundImage: 'radial-gradient(#E5E7EB 1px, transparent 1px)',
-      backgroundSize: '24px 24px'
-    }}>
-      <div className="container mx-auto px-4">
+    <section 
+    id="ideal-client" 
+    className="py-20 bg-white relative overflow-hidden" 
+    // CAMBIO 1: Reemplazamos el fondo con el de TechnologiesSection
+    style={{
+      backgroundImage: `
+        radial-gradient(circle at 25% 25%, rgba(126, 63, 242, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(1, 249, 198, 0.08) 0%, transparent 50%),
+        linear-gradient(135deg, transparent 0%, rgba(10, 31, 102, 0.02) 50%, transparent 100%),
+        radial-gradient(#E5E7EB 1px, transparent 1px)
+      `,
+      backgroundSize: '800px 800px, 600px 600px, 100% 100%, 24px 24px',
+      backgroundPosition: '0% 0%, 100% 100%, 0% 0%, 0% 0%'
+    }}
+  >
+
+    {/* Estas clases vienen de techNoir.css y index.css */}
+    <div className="tech-matrix-bg absolute inset-0 opacity-10 pointer-events-none"></div>
+    <div className="tech-grid-overlay absolute inset-0 opacity-20 pointer-events-none"></div>
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-electric-blue mb-4">
-            ¿Esto es para ti?
-          </h2>
-          <p className="text-xl text-dark-gray-text mb-12">
-            Descubre si nuestras soluciones son perfectas para tu negocio
-          </p>
+          <div ref={titleAnimation.ref} style={titleAnimation.style}>
+            <h2 className="text-4xl md:text-5xl font-heading font-bold text-electric-blue mb-4 tech-glitch-low" data-text="¿Esto es para ti?">
+              ¿Esto es para ti?
+            </h2>
+            <p className="text-xl text-dark-gray-text mb-12">
+              Descubre si nuestras soluciones son perfectas para tu negocio
+            </p>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-8 items-stretch">
             {/* Es para ti */}
@@ -112,20 +134,14 @@ const IdealClientSection = () => {
           </div>
 
           <div className="mt-8">
-            <div className="group relative bg-white p-[1px] rounded-xl inline-block transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="absolute inset-0 rounded-xl" style={{
-                background: 'linear-gradient(135deg, #7E3FF2 0%, #01F9C6 100%)',
-                WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                WebkitMaskComposite: 'xor',
-                maskComposite: 'exclude',
-                opacity: 0.8
-              }} />
-              <div className="bg-white px-8 py-4 rounded-xl relative z-10">
+            <div className="relative bg-white p-[1px] rounded-xl inline-block transition-all duration-300 group shadow-lg">
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-digital-purple/30 to-tech-cyan/30 transition-opacity duration-300"></div>
+              <div className="relative bg-white px-8 py-4 rounded-xl z-10">
                 <p className="text-lg font-heading font-semibold text-dark-gray-text">
                   Si te identificas con los puntos positivos, 
-                  <span className="bg-clip-text text-transparent" style={{
-                    backgroundImage: 'linear-gradient(135deg, #7E3FF2 0%, #01F9C6 100%)'
-                  }}> ¡estás en el lugar correcto!</span>
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-digital-purple to-tech-cyan">
+                    {' '}¡estás en el lugar correcto!
+                  </span>
                 </p>
               </div>
             </div>

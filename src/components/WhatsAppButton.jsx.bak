@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { useAnalytics } from '../context/AnalyticsContext';
 
 const WhatsAppButton = () => {
-  const { trackClickEvent } = useAnalytics();
   const [isOpen, setIsOpen] = useState(false);
   const whatsappLink = "https://api.whatsapp.com/send/?phone=51980187824&text=Hola%2C+acabo+de+visitar+su+p%C3%A1gina+web+y+quisiera+mas+informaci%C3%B3n&type=phone_number&app_absent=0";
 
@@ -87,14 +85,7 @@ const WhatsAppButton = () => {
     <>
       {/* Botón flotante de WhatsApp */}
       <button
-        id="btn-whatsapp-flotante"
-        onClick={() => {
-          trackClickEvent({
-            eventName: 'Click Abrir Popup WhatsApp',
-            targetId: 'btn-whatsapp-flotante'
-          });
-          setIsOpen(!isOpen);
-        }}
+        onClick={() => setIsOpen(!isOpen)}
         style={buttonStyle}
         aria-label="Abrir chat de WhatsApp"
       >
@@ -158,17 +149,10 @@ const WhatsAppButton = () => {
 
             {/* Botón de acción */}
             <a
-              id="btn-whatsapp-abrir-chat"
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
               style={actionButtonStyle}
-              onClick={() => {
-                trackClickEvent({
-                  eventName: 'Click Iniciar Chat WhatsApp',
-                  targetId: 'btn-whatsapp-abrir-chat'
-                });
-              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

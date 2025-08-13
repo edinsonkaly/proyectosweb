@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { AnalyticsProvider } from './context/AnalyticsContext';
 import App from './App.tsx';
 import './index.css';
 
@@ -7,6 +8,8 @@ const root = createRoot(document.getElementById("root")!);
 
 root.render(
   <BrowserRouter basename={import.meta.env.BASE_URL}>
-    <App />
+    <AnalyticsProvider>
+      <App />
+    </AnalyticsProvider>
   </BrowserRouter>
 );
